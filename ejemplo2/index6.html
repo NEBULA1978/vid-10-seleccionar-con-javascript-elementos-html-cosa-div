@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .cosa {
+            text-align: center;
+            transition: all 0.5s; /* Añadido para suavizar las transiciones */
+            margin: 0 auto; /* Centrar en el contenedor utilizando márgenes automáticos */
+            visibility: hidden; /* Inicialmente oculto */
+            animation-duration: 1s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+
+        #cosaCenter {
+            visibility: visible; /* Inicialmente visible */
+        }
+
+        @keyframes moveUpDown {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(20px);
+            }
+        }
+
+        @keyframes moveLeftRight {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(20px);
+            }
+        }
+
+        #cosaLeft {
+            animation-name: moveUpDown;
+        }
+
+        #cosaRight {
+            animation-name: moveLeftRight;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cosa" id="cosaLeft">COSA</div>
+        <div class="cosa" id="cosaCenter" onclick="cambio_color()">COSA</div>
+        <div class="cosa" id="cosaRight">COSA</div>
+    </div>
+
+    <script>
+        var estadoInicial = true;
+
+        function cambio_color() {
+            var cosaLeft = document.getElementById('cosaLeft');
+            var cosaRight = document.getElementById('cosaRight');
+
+            if (estadoInicial) {
+                // Mostrar las palabras a la izquierda y a la derecha
+                cosaLeft.style.visibility = 'visible';
+                cosaRight.style.visibility = 'visible';
+
+                // Cambiar el estado para la próxima vez
+                estadoInicial = !estadoInicial;
+            } else {
+                // Esconder las palabras a la izquierda y a la derecha
+                cosaLeft.style.visibility = 'hidden';
+                cosaRight.style.visibility = 'hidden';
+
+                // Volver al estado inicial
+                estadoInicial = !estadoInicial;
+            }
+        }
+    </script>
+</body>
+</html>
