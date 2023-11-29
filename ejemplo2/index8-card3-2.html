@@ -8,13 +8,16 @@
     <style type="text/css">
         .container {
             display: flex;
-            justify-content: space-around;
+            flex-direction: column; /* Cambiado a columna en dispositivos móviles */
             align-items: center;
             height: 100vh;
         }
 
-        .cosa {
+        .cosa-container {
             text-align: center;
+        }
+
+        .cosa {
             transition: all 0.5s; /* Añadido para suavizar las transiciones */
             margin: 0 auto; /* Centrar en el contenedor utilizando márgenes automáticos */
             visibility: hidden; /* Inicialmente oculto */
@@ -64,58 +67,62 @@
         #cosaRight {
             animation-name: moveLeftRight;
         }
+
+        @media (max-width: 600px) {
+            /* Reglas de estilo específicas para pantallas con un ancho máximo de 600px (tamaño móvil) */
+            .container {
+                height: auto; /* Altura automática en dispositivos móviles */
+            }
+
+            .cosa {
+                margin-bottom: 20px; /* Añadido espacio entre elementos en dispositivos móviles */
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="cosa" id="cosaLeft" onclick="mostrarTarjeta('cardLeft')">COSA</div>
-        <div class="cosa" id="cosaCenter" onclick="cambio_color()">COSA</div>
-        <div class="cosa" id="cosaRight" onclick="mostrarTarjeta('cardRight')">COSA</div>
-    </div>
-
-    <!-- Tarjetas ocultas inicialmente -->
-    <div class="card" id="cardLeft">
-        <!-- Contenido de la tarjeta izquierda -->
-        <h2>Tarjeta Izquierda</h2>
-        <p>Contenido de la tarjeta izquierda...</p>
-    </div>
-    <div class="card" id="cardCenter">
-        <!-- Contenido de la tarjeta central -->
-        <h2>Tarjeta Central</h2>
-        <p>Contenido de la tarjeta central...</p>
-    </div>
-    <div class="card" id="cardRight">
-        <!-- Contenido de la tarjeta derecha -->
-        <h2>Tarjeta Derecha</h2>
-        <p>Contenido de la tarjeta derecha...</p>
+        <div class="cosa-container">
+            <div class="cosa" id="cosaLeft" onclick="mostrarTarjeta('cardLeft')">COSA</div>
+            <div class="card" id="cardLeft">
+                <!-- Contenido de la tarjeta izquierda -->
+                <h2>Tarjeta Izquierda</h2>
+                <p>Contenido de la tarjeta izquierda...</p>
+            </div>
+        </div>
+        <div class="cosa-container">
+            <div class="cosa" id="cosaCenter" onclick="cambio_color()">COSA</div>
+            <div class="card" id="cardCenter">
+                <!-- Contenido de la tarjeta central -->
+                <h2>Tarjeta Central</h2>
+                <p>Contenido de la tarjeta central...</p>
+            </div>
+        </div>
+        <div class="cosa-container">
+            <div class="cosa" id="cosaRight" onclick="mostrarTarjeta('cardRight')">COSA</div>
+            <div class="card" id="cardRight">
+                <!-- Contenido de la tarjeta derecha -->
+                <h2>Tarjeta Derecha</h2>
+                <p>Contenido de la tarjeta derecha...</p>
+            </div>
+        </div>
     </div>
 
     <script>
         var estadoInicial = true;
 
         function cambio_color() {
-            var cosaCenter = document.getElementById('cosaCenter');
-            var cosaLeft = document.getElementById('cosaLeft');
-            var cosaRight = document.getElementById('cosaRight');
-      var cards = document.querySelectorAll('.card');
+            var cosas = document.querySelectorAll('.cosa');
+            var cards = document.querySelectorAll('.card');
 
             if (estadoInicial) {
                 // Cambiar colores al pulsar en el centro
-                cosaCenter.style.color = 'red';
-                cosaCenter.style.backgroundColor = 'yellow';
+                cosas.forEach(cosa => {
+                    cosa.style.color = 'red';
+                    cosa.style.backgroundColor = 'yellow';
+                });
 
-                // Cambiar colores de los laterales
-                cosaLeft.style.color = 'blue';
-                cosaLeft.style.backgroundColor = 'green';
-
-                cosaRight.style.color = 'blue';
-                cosaRight.style.backgroundColor = 'green';
-
-                // Mostrar las palabras a la izquierda y a la derecha
-                cosaLeft.style.visibility = 'visible';
-                cosaRight.style.visibility = 'visible';
-
-                // Mostrar las tarjetas
+                // Mostrar todas las tarjetas
                 cards.forEach(card => {
                     card.style.display = 'block';
                 });
@@ -123,20 +130,13 @@
                 // Cambiar el estado para la próxima vez
                 estadoInicial = !estadoInicial;
             } else {
-                // Restaurar colores y ocultar las palabras a la izquierda y a la derecha
-                cosaCenter.style.color = '';
-                cosaCenter.style.backgroundColor = '';
+                // Restaurar colores y ocultar todas las tarjetas
+                cosas.forEach(cosa => {
+                    cosa.style.color = '';
+                    cosa.style.backgroundColor = '';
+                });
 
-                cosaLeft.style.color = '';
-                cosaLeft.style.backgroundColor = '';
-
-                cosaRight.style.color = '';
-                cosaRight.style.backgroundColor = '';
-
-                cosaLeft.style.visibility = 'hidden';
-                cosaRight.style.visibility = 'hidden';
-
-                // Ocultar las tarjetas
+                // Ocultar todas las tarjetas
                 cards.forEach(card => {
                     card.style.display = 'none';
                 });

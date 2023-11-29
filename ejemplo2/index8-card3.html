@@ -13,8 +13,11 @@
             height: 100vh;
         }
 
-        .cosa {
+        .cosa-container {
             text-align: center;
+        }
+
+        .cosa {
             transition: all 0.5s; /* Añadido para suavizar las transiciones */
             margin: 0 auto; /* Centrar en el contenedor utilizando márgenes automáticos */
             visibility: hidden; /* Inicialmente oculto */
@@ -68,26 +71,30 @@
 </head>
 <body>
     <div class="container">
-        <div class="cosa" id="cosaLeft" onclick="mostrarTarjeta('cardLeft')">COSA</div>
-        <div class="cosa" id="cosaCenter" onclick="cambio_color()">COSA</div>
-        <div class="cosa" id="cosaRight" onclick="mostrarTarjeta('cardRight')">COSA</div>
-    </div>
-
-    <!-- Tarjetas ocultas inicialmente -->
-    <div class="card" id="cardLeft">
-        <!-- Contenido de la tarjeta izquierda -->
-        <h2>Tarjeta Izquierda</h2>
-        <p>Contenido de la tarjeta izquierda...</p>
-    </div>
-    <div class="card" id="cardCenter">
-        <!-- Contenido de la tarjeta central -->
-        <h2>Tarjeta Central</h2>
-        <p>Contenido de la tarjeta central...</p>
-    </div>
-    <div class="card" id="cardRight">
-        <!-- Contenido de la tarjeta derecha -->
-        <h2>Tarjeta Derecha</h2>
-        <p>Contenido de la tarjeta derecha...</p>
+        <div class="cosa-container">
+            <div class="cosa" id="cosaLeft" onclick="mostrarTarjeta('cardLeft')">COSA</div>
+            <div class="card" id="cardLeft">
+                <!-- Contenido de la tarjeta izquierda -->
+                <h2>Tarjeta Izquierda</h2>
+                <p>Contenido de la tarjeta izquierda...</p>
+            </div>
+        </div>
+        <div class="cosa-container">
+            <div class="cosa" id="cosaCenter" onclick="cambio_color()">COSA</div>
+            <div class="card" id="cardCenter">
+                <!-- Contenido de la tarjeta central -->
+                <h2>Tarjeta Central</h2>
+                <p>Contenido de la tarjeta central...</p>
+            </div>
+        </div>
+        <div class="cosa-container">
+            <div class="cosa" id="cosaRight" onclick="mostrarTarjeta('cardRight')">COSA</div>
+            <div class="card" id="cardRight">
+                <!-- Contenido de la tarjeta derecha -->
+                <h2>Tarjeta Derecha</h2>
+                <p>Contenido de la tarjeta derecha...</p>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -97,7 +104,7 @@
             var cosaCenter = document.getElementById('cosaCenter');
             var cosaLeft = document.getElementById('cosaLeft');
             var cosaRight = document.getElementById('cosaRight');
-      var cards = document.querySelectorAll('.card');
+            var cards = document.querySelectorAll('.card');
 
             if (estadoInicial) {
                 // Cambiar colores al pulsar en el centro
@@ -115,10 +122,10 @@
                 cosaLeft.style.visibility = 'visible';
                 cosaRight.style.visibility = 'visible';
 
-                // Mostrar las tarjetas
-                cards.forEach(card => {
-                    card.style.display = 'block';
-                });
+                // Mostrar solo la tarjeta central
+                document.getElementById('cardLeft').style.display = 'none';
+                document.getElementById('cardCenter').style.display = 'block';
+                document.getElementById('cardRight').style.display = 'none';
 
                 // Cambiar el estado para la próxima vez
                 estadoInicial = !estadoInicial;
