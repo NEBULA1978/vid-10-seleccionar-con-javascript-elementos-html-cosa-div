@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .cosa {
+            text-align: center;
+            transition: all 0.5s; /* Añadido para suavizar las transiciones */
+            margin: 0 auto; /* Centrar en el contenedor utilizando márgenes automáticos */
+            visibility: hidden; /* Inicialmente oculto */
+            animation-duration: 1s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+
+        .card {
+            /* Agrega estilos para las tarjetas aquí */
+            width: 300px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            margin-bottom: 20px;
+            display: none; /* Inicialmente ocultas */
+        }
+
+        #cosaCenter {
+            visibility: visible; /* Inicialmente visible */
+        }
+
+        @keyframes moveUpDown {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(20px);
+            }
+        }
+
+        @keyframes moveLeftRight {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(20px);
+            }
+        }
+
+        #cosaLeft {
+            animation-name: moveUpDown;
+        }
+
+        #cosaRight {
+            animation-name: moveLeftRight;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cosa" id="cosaLeft" onclick="mostrarTarjeta('cardLeft')">COSA</div>
+        <div class="cosa" id="cosaCenter" onclick="cambio_color()">COSA</div>
+        <div class="cosa" id="cosaRight" onclick="mostrarTarjeta('cardRight')">COSA</div>
+    </div>
+
+    <!-- Tarjetas ocultas inicialmente -->
+    <div class="card" id="cardLeft">
+        <!-- Contenido de la tarjeta izquierda -->
+        <h2>Tarjeta Izquierda</h2>
+        <p>Contenido de la tarjeta izquierda...</p>
+    </div>
+    <div class="card" id="cardCenter">
+        <!-- Contenido de la tarjeta central -->
+        <h2>Tarjeta Central</h2>
+        <p>Contenido de la tarjeta central...</p>
+    </div>
+    <div class="card" id="cardRight">
+        <!-- Contenido de la tarjeta derecha -->
+        <h2>Tarjeta Derecha</h2>
+        <p>Contenido de la tarjeta derecha...</p>
+    </div>
+
+    <script>
+        var estadoInicial = true;
+
+        function cambio_color() {
+            var cosaCenter = document.getElementById('cosaCenter');
+            var cosaLeft = document.getElementById('cosaLeft');
+            var cosaRight = document.getElementById('cosaRight');
+            var cards = document.querySelectorAll('.card');
+
+            if (estadoInicial) {
+                // Cambiar colores al pulsar en el centro
+                cosaCenter.style.color = 'red';
+                cosaCenter.style.backgroundColor = 'yellow';
+
+                // Cambiar colores de los laterales
+                cosaLeft.style.color = 'blue';
+                cosaLeft.style.backgroundColor = 'green';
+
+                cosaRight.style.color = 'blue';
+                cosaRight.style.backgroundColor = 'green';
+
+                // Mostrar las palabras a la izquierda y a la derecha
+                cosaLeft.style.visibility = 'visible';
+                cosaRight.style.visibility = 'visible';
+
+                // Mostrar las tarjetas
+                cards.forEach(card => {
+                    card.style.display = 'block';
+                });
+
+                // Cambiar el estado para la próxima vez
+                estadoInicial = !estadoInicial;
+            } else {
+                // Restaurar colores y ocultar las palabras a la izquierda y a la derecha
+                cosaCenter.style.color = '';
+                cosaCenter.style.backgroundColor = '';
+
+                cosaLeft.style.color = '';
+                cosaLeft.style.backgroundColor = '';
+
+                cosaRight.style.color = '';
+                cosaRight.style.backgroundColor = '';
+
+                cosaLeft.style.visibility = 'hidden';
+                cosaRight.style.visibility = 'hidden';
+
+                // Ocultar las tarjetas
+                cards.forEach(card => {
+                    card.style.display = 'none';
+                });
+
+                // Volver al estado inicial
+                estadoInicial = !estadoInicial;
+            }
+        }
+
+        // Función para mostrar una tarjeta específica
+        function mostrarTarjeta(cardId) {
+            var cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.style.display = 'none';
+            });
+
+            document.getElementById(cardId).style.display = 'block';
+        }
+    </script>
+</body>
+</html>

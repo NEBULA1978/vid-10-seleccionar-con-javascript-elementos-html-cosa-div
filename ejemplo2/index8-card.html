@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Glass con efecto Hover - MagtimusPro</title>
+    <link rel="stylesheet" href="css/estilos-grid.css">
+    <style>
+        /* Estilos para la versión escritorio */
+        .container__cards {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 20px; /* Ajusta el margen superior según tus necesidades */
+        }
+
+        .card {
+            width: 300px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out; /* Añadido para el efecto de transformación en hover */
+        }
+
+        .card:hover {
+            transform: scale(1.1); /* Escalamos la tarjeta al hacer hover */
+        }
+
+        .cover__card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .user__name {
+            margin: 0;
+        }
+
+        i {
+            font-style: italic;
+            color: #666;
+        }
+
+        /* Estilos para la versión móvil */
+        @media screen and (max-width: 600px) {
+            .container__cards {
+                flex-direction: column; /* Cambiamos la dirección del contenedor a columna */
+                align-items: center;
+            }
+
+            .card {
+                width: 100%; /* Ocupar el 100% del ancho */
+                margin-bottom: 20px; /* Añadimos margen inferior entre tarjetas */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container__background-triangle">
+        <div class="triangle triangle1"></div>
+        <div class="triangle triangle2"></div>
+        <div class="triangle triangle3"></div>
+    </div>
+
+    <div class="container__cards">
+        <!-- Tarjetas ocultas inicialmente -->
+        <div class="card" id="card1">
+            <div class="cover__card">
+                <img src="images/img-1.jpg" alt="">
+            </div>
+            <h2>Sabemos cómo aumentar los beneficios</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui sunt eius dolore pariatur. Error, provident et similique sunt voluptate odit eos facere expedita, culpa at officia magnam quia vel eius!</p>
+            <hr>
+            <div class="footer__card">
+                <h3 class="user__name">Mamie Barnett</h3>
+                <i>08 Marzo</i>
+            </div>
+        </div>
+        <div class="card" id="card2">
+            <div class="cover__card">
+                <img src="images/img-2.jpg" alt="">
+            </div>
+            <h2>Sabemos cómo aumentar los beneficios</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui sunt eius dolore pariatur. Error, provident et similique sunt voluptate odit eos facere expedita, culpa at officia magnam quia vel eius!</p>
+            <hr>
+            <div class="footer__card">
+                <h3 class="user__name">Mamie Barnett</h3>
+                <i>08 Marzo</i>
+            </div>
+        </div>
+        <div class="card" id="card3">
+            <div class="cover__card">
+                <img src="images/img-3.jpg" alt="">
+            </div>
+            <h2>Sabemos cómo aumentar los beneficios</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui sunt eius dolore pariatur. Error, provident et similique sunt voluptate odit eos facere expedita, culpa at officia magnam quia vel eius!</p>
+            <hr>
+            <div class="footer__card">
+                <h3 class="user__name">Mamie Barnett</h3>
+                <i>08 Marzo</i>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var estadoInicial = true;
+
+        function cambio_color() {
+            var cards = document.querySelectorAll('.card');
+
+            if (estadoInicial) {
+                // Mostrar las tarjetas al hacer clic en "cosa"
+                cards.forEach(card => {
+                    card.style.visibility = 'visible';
+                });
+
+                // Cambiar el estado para la próxima vez
+                estadoInicial = !estadoInicial;
+            } else {
+                // Esconder las tarjetas
+                cards.forEach(card => {
+                    card.style.visibility = 'hidden';
+                });
+
+                // Volver al estado inicial
+                estadoInicial = !estadoInicial;
+            }
+        }
+    </script>
+</body>
+</html>
