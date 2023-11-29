@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .cosa {
+            text-align: center;
+            transition: all 0.5s; /* Añadido para suavizar las transiciones */
+            width: 30%; /* Ancho inicial */
+            margin: 0 auto; /* Centrar en el contenedor */
+        }
+    </style>
+    <script src="selectores.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="cosa" id="cosaLeft">COSA</div>
+        <div class="cosa" id="cosaCenter">COSA</div>
+        <div class="cosa" id="cosaRight">COSA</div>
+    </div>
+
+    <script>
+        window.onload = inicio;
+
+        var estadoInicial = true;
+
+        function inicio() {
+            document.getElementById("cosaCenter").onclick = cambio_color;
+        }
+
+        function cambio_color() {
+            var cosaLeft = document.getElementById("cosaLeft").style;
+            var cosaCenter = document.getElementById("cosaCenter").style;
+            var cosaRight = document.getElementById("cosaRight").style;
+
+            if (estadoInicial) {
+                // Cambiar a colores alternos, centrar, reducir el tamaño y ajustar el color de fondo
+                cosaLeft.color = "red";
+                cosaLeft.backgroundColor = "lightblue"; // Puedes ajustar el color según tus preferencias
+                cosaLeft.border = "4px dotted green";
+                cosaLeft.textAlign = "center";
+                cosaLeft.width = "30%"; // Puedes ajustar el ancho según tus necesidades
+                cosaLeft.fontSize = "2rem"; // Puedes ajustar el tamaño según tus necesidades
+
+                cosaRight.color = "red";
+                cosaRight.backgroundColor = "lightblue"; // Puedes ajustar el color según tus preferencias
+                cosaRight.border = "4px dotted green";
+                cosaRight.textAlign = "center";
+                cosaRight.width = "30%"; // Puedes ajustar el ancho según tus necesidades
+                cosaRight.fontSize = "2rem"; // Puedes ajustar el tamaño según tus necesidades
+
+                cosaCenter.color = "red";
+                cosaCenter.backgroundColor = "lightblue"; // Puedes ajustar el color según tus preferencias
+                cosaCenter.border = "4px dotted green";
+                cosaCenter.textAlign = "center";
+                cosaCenter.width = "30%"; // Puedes ajustar el ancho según tus necesidades
+                cosaCenter.fontSize = "2rem"; // Puedes ajustar el tamaño según tus necesidades
+            } else {
+                // Volver al estado inicial y centrar
+                cosaLeft.color = ""; // Puedes establecer el color a su valor original si lo conoces
+                cosaLeft.backgroundColor = "";
+                cosaLeft.border = "";
+                cosaLeft.textAlign = "center";
+                cosaLeft.width = ""; // Vuelve al ancho original
+                cosaLeft.fontSize = ""; // Vuelve al tamaño original
+
+                cosaRight.color = ""; // Puedes establecer el color a su valor original si lo conoces
+                cosaRight.backgroundColor = "";
+                cosaRight.border = "";
+                cosaRight.textAlign = "center";
+                cosaRight.width = ""; // Vuelve al ancho original
+                cosaRight.fontSize = ""; // Vuelve al tamaño original
+
+                cosaCenter.color = ""; // Puedes establecer el color a su valor original si lo conoces
+                cosaCenter.backgroundColor = "";
+                cosaCenter.border = "";
+                cosaCenter.textAlign = "center";
+                cosaCenter.width = ""; // Vuelve al ancho original
+                cosaCenter.fontSize = ""; // Vuelve al tamaño original
+            }
+
+            // Cambiar el estado para la próxima vez
+            estadoInicial = !estadoInicial;
+        }
+    </script>
+</body>
+</html>
